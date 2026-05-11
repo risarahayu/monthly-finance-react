@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Finance App</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="loading" style="display:none;">⏳ Loading...</div>
+
+<div class="wrapper">
+  <h1>Finance Tracker</h1>
+
+  <!-- FORM INPUT -->
+  <div class="card">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <h3>Add Transaction</h3>
+      <a href="/dashboard.html">See more detail</a>
+    </div>
+    <form id="transactionForm" class="form-grid">
+        <input type="date" id="trans_date" required>
+        <input type="text" id="description" placeholder="Description" required>
+        <input type="text" id="category" placeholder="Category" required>
+
+        <select id="typeInput">
+            <option value="income">Income</option>
+            <option value="expense">Expense</option>
+        </select>
+
+        <input type="number" id="amount" placeholder="Amount" required>
+
+        <button type="submit">Save</button>
+    </form>
+  </div>
+
+  <!-- FILTER -->
+  <div class="card">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <h3>Filter</h3>
+    </div>
+    <form id="filterForm" class="form-grid">
+      <input type="date" id="startDate">
+      <input type="date" id="endDate">
+
+      <select id="typeFilter">
+        <option value="">All</option>
+        <option value="income">Income</option>
+        <option value="expense">Expense</option>
+      </select>
+
+      <button type="submit">Apply Filter</button>
+    </form>
+  </div>
+
+  <!-- LIST -->
+  <div class="card">
+    <h3>Transactions</h3>
+    <ul id="transactionList" class="list"></ul>
+  </div>
+
+</div>
+<div id="toastContainer"></div>
+<script src="/js/script.js"></script>
+<script src="/js/toast.js"></script>
+</body>
+</html>
