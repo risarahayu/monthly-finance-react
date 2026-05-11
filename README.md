@@ -1,107 +1,124 @@
-# Monthly Finance App
+# Monthly Finance React
 
-A simple monthly finance tracker built with Node.js, Express, and MySQL. This app supports transaction management and dashboard summary views with filtering.
+Migration of my vanilla JavaScript finance tracker into React to learn component-based architecture, state management, and modern frontend development.
 
-## Fitur Utama
+---
 
-- Tambah, edit, dan hapus transaksi
-- Tampilkan ringkasan `income`, `expense`, dan `balance`
-- Filter transaksi berdasarkan tanggal dan tipe
-- Filter dashboard berdasarkan bulan dan tahun
+# Goals
 
-## Struktur Penting
+This project is focused on understanding how modern frontend development works using React.
 
-- `public/dashboard.html` — halaman dashboard
-- `public/dashboard.js` — logic filter dashboard
-- `public/script.js` — logic transaksi dan filter transaksi
-- `src/controllers/dashboardController.js` — controller dashboard
-- `src/models/dashboardModel.js` — query summary/dashboard
-- `src/controllers/transactionController.js` — controller transaksi
-- `src/models/transactionModel.js` — query transaksi
+Main learning goals:
 
-## Cara Menjalankan
+* Convert Vanilla JavaScript UI into React components
+* Understand declarative UI concepts
+* Learn React state management with `useState`
+* Learn side effects with `useEffect`
+* Build reusable UI components
+* Connect React frontend with REST API backend
+* Improve project structure and scalability
 
-1. Install dependencies:
+---
+
+# Features
+
+Current / Planned Features:
+
+* Add transaction
+* Edit transaction
+* Delete transaction
+* Dashboard summary
+* Expense chart
+* Monthly filter
+* Loading state
+* Error handling
+* Responsive UI
+* Toast notification
+* REST API integration
+
+---
+
+# Tech Stack
+
+Frontend:
+
+* React
+* Vite
+* JavaScript
+* CSS
+* Chart.js
+
+Backend:
+
+* Node.js
+* Express.js
+
+---
+
+# Learning Journey
+
+This project is a continuation of my Vanilla JavaScript finance tracker project.
+
+The purpose of rebuilding it in React is to compare:
+
+| Vanilla JavaScript        | React                  |
+| ------------------------- | ---------------------- |
+| Manual DOM manipulation   | Declarative UI         |
+| Manual rendering          | Automatic rerender     |
+| Event listeners           | Component events       |
+| Variable-based UI updates | State-driven UI        |
+| Large HTML files          | Component architecture |
+
+---
+
+# Project Setup
+
+Install dependencies:
 
 ```bash
 npm install
 ```
 
-2. Jalankan server:
+Run development server:
 
 ```bash
-node server.js
+npm run dev
 ```
 
-3. Buka browser ke:
+---
 
-- `http://localhost:3000/dashboard/view` untuk dashboard
-- `http://localhost:3000/` untuk daftar transaksi
+# Install React with Vite
 
-## Routing Patterns
-
-### Dashboard (Multi-page Pattern)
-```javascript
-// Routes di-mount ke /dashboard
-app.use('/dashboard', dashboardRoutes);
-
-// URL yang tersedia:
-GET /dashboard/view     → serve dashboard.html
-GET /dashboard/api      → return JSON summary data
-GET /dashboard/api/category-summary → return chart data
+```bash
+npm create vite@latest
 ```
+---
 
-### Transaction (SPA Pattern)
-```javascript
-// Static files diserve otomatis
-app.use(express.static('public'));
+# Future Improvements
 
-// API routes di-mount ke /transactions
-app.use('/transactions', transactionRoutes);
+Planned improvements:
 
-// URL yang tersedia:
-GET /                    → serve index.html (via static)
-GET /transactions        → return JSON transaction data
-GET /transactions/:id    → return single transaction
-POST /transactions       → create transaction
-PUT /transactions/:id    → update transaction
-DELETE /transactions/:id → delete transaction
-```
+* Authentication
+* Global state management
+* Better chart analytics
+* Pagination
+* Search feature
+* Dark mode
+* Responsive dashboard
+* Deployment
 
-## Fitur Filter
+---
 
-### Dashboard Filter
+# Purpose
 
-- Form filter di `public/dashboard.html` menggunakan `month` dan `year`
-- Saat klik `Apply Filter`, `dashboard.js` mengirim request ke:
-  - `GET /dashboard/api/?month=<value>&year=<value>`
-- Backend `dashboardController.getDashboardSummary()` menerima query params dan memanggil:
-  - `dashboardModel.getDashboardSummary(month, year)`
-- Model menghitung `total_income`, `total_expense`, dan `balance` dengan filter bulan/tahun
+This repository is part of my frontend development learning journey focused on:
 
-### Transaction Filter
+* React fundamentals
+* Modern frontend architecture
+* State management
+* API integration
+* Scalable UI development
 
-- Form filter di halaman transaksi menggunakan `startDate`, `endDate`, dan `type`
-- Saat submit, `script.js` memanggil:
-  - `GET /transactions?startDate=<value>&endDate=<value>&type=<value>`
-- Backend `transactionController.getTransactions()` akan:
-  - memanggil `Transaction.getFilteredTransactions(...)` jika ada filter
-  - atau `Transaction.getAllTransactions()` jika tanpa filter
-- Hasilnya dirender ulang ke daftar transaksi
-
-## Catatan
-
-- Pastikan database terhubung dengan benar di `src/config/db.js`
-- Pastikan field tanggal di tabel transactions bernama `trans_date` sesuai query
-
-## Troubleshooting
-
-- Jika filter dashboard tidak bekerja, cek apakah backend menerima `month` dan `year`
-- Jika transaksi tidak muncul, cek query string pada request dan hasil JSON di console browser
+---
 
 
-<!--  -->
-Kalau bingung app dari mana? 
-/ kok bisa /transactions? 
-
-cek aja di file app.js
